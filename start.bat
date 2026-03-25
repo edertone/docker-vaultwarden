@@ -33,3 +33,8 @@ if %errorlevel% neq 0 (
 
 :: Launch browser
 start "" chrome.exe --app=https://localhost:8446 --ignore-certificate-errors --window-size=1024,768
+
+:: Open passwords file if it exists, so we can easily copy the admin passwords
+if exist "passwords.txt" (
+    start "" "passwords.txt"
+)
