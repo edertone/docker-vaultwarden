@@ -4,8 +4,17 @@ services:
     environment:
       ATTACHMENTS_ENABLED: 'true'
     image: vaultwarden/server:latest
-    ports:
-    - 8083:80
     restart: no
     volumes:
-    - ./vw-data:/data
+    - ./data/vaultwarden:/data
+
+  caddy:
+    image: caddy:2
+    container_name: caddy
+    restart: no
+    ports:
+      - 8446:8443
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./data/caddy:/data
+      - ./data/caddy/config:/config

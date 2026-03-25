@@ -6,9 +6,9 @@ Local instance of [Vaultwarden](https://github.com/dani-garcia/vaultwarden), an 
 
 ## Features
 
-- **Vaultwarden server**: Running on localhost:8083
+- **Vaultwarden server**: Running securely behind Caddy on <https://localhost:8446>
 - **File Attachments**: Enabled by default
-- **Persistent Data**: Stored locally in the ./vw-data directory
+- **Persistent Data**: Stored locally in the ./data directory
 
 ## Getting Started
 
@@ -27,5 +27,7 @@ You can easily manage the server using the provided batch scripts:
 
 ## Configuration Details
 
-- **Port:** HTTP access on 8083 (Standard Bitwarden clients require HTTPS, so you should place this behind a reverse proxy like NGINX or Caddy for external access or use localhost).
-- **Volumes:** All user data, databases, and attachments are persisted in ./vw-data.
+- **Caddy Reverse Proxy**: Handles HTTPS locally using a self-signed certificate to ensure secure communication.
+- **Port:** HTTPS access is provided on port 8446 (`https://localhost:8446`).
+- **Start Script:** The `start.bat` script automatically waits for the service to be ready and launches Chrome while ignoring the self-signed certificate warnings.
+- **Volumes:** All user data, databases, attachments, and Caddy configurations are persisted in `./data`.
